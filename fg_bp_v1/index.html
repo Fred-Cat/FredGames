@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FredGames</title>
+    <link id="favicon" rel="icon" href="images/fav.svg">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;500;600&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;600&display=swap'); */
+        /* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
+        /* @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap'); */
+        /* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap'); */
+        /* @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap'); */
+        /* @import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap'); */
+        /* @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); */
+    </style>
+</head>
+
+<body>
+
+    <canvas id="freditCanvas"></canvas>
+
+    <div class="flex head">
+        <div id="dataUserName">Guest</div>
+        <div><a href="index.html"><img src="images/logo.svg"></a></div>
+        <div>
+            <span id="dataUserFredits">0</span>F<br>
+            <span id="dataUserValue">0.00</span>$
+        </div>
+    </div>
+
+    <div class="flex nav">
+        <div class="icon" onclick="goto(home)" title="Home"><img src="images/home.svg"></div>
+        <div class="icon" onclick="goto(discover)" title="Discover"><img src="images/game.svg"></div>
+        <div class="icon" onclick="goto(search)" title="Search"><img src="images/search.svg"></div>
+        <div class="icon" onclick="goto(ad)" title="Ads"><img src="images/ad.svg"></div>
+        <div class="icon" onclick="goto(fredit)" title="Fredits"><img src="images/fredit.svg"></div>
+        <div class="icon" onclick="goto(profile)" title="Profile"><img src="images/profile.svg"></div>
+        <div class="icon" onclick="goto(settings)" title="Settings"><img src="images/settings.svg"></div>
+        <div class="icon" onclick="goto(info)" title="Info"><img src="images/info.svg"></div>
+    </div>
+
+
+    <div id="home" class="page">
+        <p> Welcome to the FredGames Blueprint V1. This is a proof of concept of the fredit system and a
+            demonstration of the general fredit-flow. Look around and crunch some numbers to see if you can get the gist
+            of it all.
+            Goodluck :3 </p>
+    </div>
+
+
+    <div id="discover" class="page">
+        <p>Upload</p>
+        <input id="inGameTitle" type="text" placeholder="game title">
+        <input id="inUploadGame" type="button" value="Upload">
+        <span id="dataUploadGameError"></span>
+
+        <p>Select</p>
+        <div id='catalog'></div>
+
+        <p>Play</p>
+        <input id="inPlayDuration" type="number" placeholder="play duration" min="0" step="60"> / 10 =
+        <span id="dataPlayCost">0</span>F
+        <input id="inPlayGame" type="button" value="Play">
+        <span id="dataPlayGameError"></span>
+    </div>
+
+
+    <div id="search" class="page">
+        search
+    </div>
+
+
+    <div id="ad" class="page">
+        <p>Buy</p>
+        <input id="inAdAmount" type="number" placeholder="AD amount" min="0"> x
+        <input id="inAdDuration" type="number" placeholder="AD seconds" min="10"> =
+        <span id="dataAdCost">0</span>F
+        <input id="inPurchaseAd" type="button" value="Purchase">
+        <span id="dataPurchaseAdError"></span>
+
+        <p>Earn</p>
+        <input id="inWatchAd" type="button" value="Watch 1 ad">
+        <span id="dataWatchAdError"></span>
+        <div id='adQ'>
+            <p>AD-Q</p>
+        </div>
+    </div>
+
+
+    <div id="fredit" class="page">
+        <p>Buy</p>
+        <input id="inFreditAmount" type="number" placeholder="Fredit Amount" min="0" step="10"> x
+        <input id="inFreditValue" type="number" placeholder="Fredit Value" min="0" step="0.001"> =
+        <span id="dataFreditCost">0.000</span>$
+        <input id="inPurchaseFredits" type="button" value="Purchase">
+        <span id="dataPurchaseFreditError"></span>
+
+        <p>Sell</p>
+        <span id="dataCashout"></span>
+        <input id="inCashout" type="button" value="Cashout">
+        <span id="dataCashoutError"></span>
+
+
+        <p>FredGames Stats</p>
+        <input id="inExpenseAmount" type="number" placeholder="Expense Amount" min="0">
+        <input id="inPurchaseExpense" type="button" value="Spend">
+        <span id="dataPurchaseExpenseError"></span>
+        <p id="dataFG"></p>
+    </div>
+
+
+    <div id="profile" class="page">
+        <p>Register and Login</p>
+        <input id="inProfileName" type="text" placeholder="Insert profile name">
+        <input id="inRegLog" type="button" value="Register/Login">
+        <select id="inSelectProfile"></select>
+        <p>User</p>
+        <p id="dataUserStats"></p>
+    </div>
+
+
+    <div id="settings" class="page">
+        settings
+    </div>
+
+
+    <div id="info" class="page">
+        info
+    </div>
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>

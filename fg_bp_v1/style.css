@@ -1,0 +1,119 @@
+* {
+    /* width and height include border and padding */
+    box-sizing: border-box;
+}
+
+body {
+    background: #050505;
+    color: #ddd;
+    margin: 0;
+    font-family: 'Roboto Mono';
+    font-weight: 400;
+    font-size: min(2vw, 20px);
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+img {
+    width: 100%;
+}
+
+::selection {
+    background: #888;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: silver;
+}
+
+#freditCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: transparent;
+    z-index: 10;
+}
+
+.flex {
+    /* background: #222; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* width: 100%; */
+}
+
+.flex>* {
+    flex: 1;
+}
+
+.head div {
+    overflow: auto;
+    margin: 15px 0 15px 0;
+}
+
+.nav {
+    background: #151515;
+    max-width: fit-content;
+    padding: 0px 50px 0px 50px;
+    border-radius: 150px;
+    margin: auto;
+    transition: .2s;
+}
+
+.nav:hover {
+    background: #ddd;
+    box-shadow: 0 0 25px 0 white;
+}
+
+.icon {
+    max-width: 50px;
+    margin: 5px;
+    transition: transform .2s;
+}
+
+.icon:hover {
+    transform: scale(1.4, 1.4);
+    cursor: pointer;
+}
+
+.page {
+    margin: auto;
+    padding: 25px;
+    display: none;
+    max-width: 1000px;
+}
+
+input,
+select,
+option {
+    padding: 10px;
+    font-family: "roboto mono";
+    font-weight: 600;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.game {
+    background: #222;
+    margin: 15px;
+    padding: 10px;
+}
+
+.selectedGame {
+    background: #666;
+}
