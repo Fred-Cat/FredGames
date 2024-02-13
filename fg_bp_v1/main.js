@@ -72,7 +72,10 @@ class Game {
         Game.all.push(this)
     }
 
-    updateText() { this.div.innerHTML = `${this.title} by ${this.owner.name}, generated: ${this.fredits}F ${parseFloat((this.value).toFixed(3))}$` }
+    updateText() {
+        this.div.innerHTML = `${this.title} by ${this.owner.name}, generated: ${this.fredits}F 
+            ${parseFloat((this.value).toFixed(3))}$`
+    }
 
     static selected = null
     static all = []
@@ -145,7 +148,8 @@ class Batch {
     }
 
     updateDiv() {
-        this.div.innerHTML = `${this.id} by: ${this.owner.name}, viewTarget: ${this.timesWatched}/${this.adAmount}, earn: ${this.adDuration}F & ${parseFloat(this.value1AD.toFixed(3))}$`
+        this.div.innerHTML = ` ${this.id} by: ${this.owner.name}, viewTarget: ${this.timesWatched}/${this.adAmount}, 
+            earn: ${this.adDuration}F & ${parseFloat(this.value1AD.toFixed(3))}$`
     }
 
     static all = []
@@ -304,7 +308,8 @@ function regLog(name) {
 
     // login
     for (const profile of Profile.all) if (profile.name == name) {
-        for (const option of inSelectProfile.options) if (option.value == name) inSelectProfile.selectedIndex = option.index
+        for (const option of inSelectProfile.options)
+            if (option.value == name) inSelectProfile.selectedIndex = option.index
 
         user = profile
 
@@ -365,7 +370,8 @@ function example1() {
 
 function example2() {
     // Example 2: Fluctuating Fredit Prices
-    // The fredit system holds up during fluctuating ad prices, the constant (1F = 1sAD | 10sPlay) is unaffected. The gamers won't notice.
+    // The fredit system holds up during fluctuating ad prices, the constant (1F = 1sAD | 10sPlay) is unaffected.
+    // So, the gamers won't even notice.
 
 
     // January
@@ -419,7 +425,9 @@ function example2() {
 
 function example3(isFuture) {
     // Example 3: Business Expenses
-    // Fredits tend to get 'stuck' in user accounts and it could take a while before a dev finally redeems them. This in theory means FG could make business investments to the point of having a lower balance than what's owed to the developers. So, FG's expenses could be higher than its current profits.
+    // Fredits tend to get 'stuck' in user accounts and it could take a while before a dev finally redeems them. 
+    // This in theory means FG could make business investments to the point of having a lower balance than what's 
+    // owed to the developers. So, FG's expenses could be higher than its current profits.
 
 
     regLog('A')
