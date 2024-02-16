@@ -1,0 +1,67 @@
+
+The Adcoin System
+Ferry van den Bogert
+2-14-24 / 2-16
+Words: 1150
+
+
+Intro
+Hi there! In this essay, I'll guide you through the concept of the adcoin system, breaking down its significance, origins, and mechanics. Let's go!
+
+
+Purpose
+Especially in webgaming are interrupting video adverts intolerable. In the matter of fact, ads and webgames mix so poorly the whole industry is on the brink of death. I, a webgame enthusiast and developer, thought out a system that separates the ads from the games. Ads, without interruptions, wouldn't that be something? I call it the 'Adcoin system' and it goes a little something like this:
+
+Advertisers first purchase points with money and then ads with those points. Users need points to access the platform's content and can earn them by watching ads. The content creator collects the points and can redeem them for the price they were bought minus the platforms cut.
+
+Simple enough, but implementing it in practice proves a bit more complex. Here are some of my findings.
+
+
+Just points
+If the price of the points, and thus the price of ad space on the platform were static and unchanging, calculating how much money to give creators for their points would be easy, simply the amount of points, times the static price of 1 point, minus the platforms cut. But this isn't realistic, ad prices are always influenced by supply and demand dynamics. The point prices would fluctuate over time. A piece of content would accumulate points that were bought when prices were low and when prices were high. By the time the creators want to redeem their wallet, you just would not know the value of said wallet and thus how much money to give for it. It's not like you can just buy the points from the creators at whatever the current price is, because if the new price has gone up since the bulk of the wallet was collected you'd be paying way too much, and if the price has gone down, well then too little, not sure what's worse. I suppose you could make an educated guess if you had some data on when the points were collected, but I'm pretty sure the creators would prefer something more concrete than but a guess. So yeah, if the points were just that, points, you end up losing the value of em due to the fluctuating price of ad space. Let's try something else.
+
+
+Just money
+You definitely wouldn't lose the value if you just used real money in dollars instead of a meaningless virtual coin. Users would earn real cents by watching ads, which they then can spend by unlocking content. And only creators, or perhaps only high amounts can be redeemed, so people can't make a living by watching ads. Well now, even though it's true that it is now crystal clear how much money the content has generated, we blurred out something else. Once again, if only the ad space prices were static you could easily lock in how many ads equal how much content, but when the cost is variable, it's hard to say how expensive the content should be. The price of the content should change along with the price of ads space, but that is problematic, users would have to deal with inflation, and perhaps at some point the platform with deflation, not at all ideal. So, if the points are just money, you might not lose the financial value, but you do lose the value in-app.
+
+
+Points with values
+I'm sure you see where I'm going here. We kinda need both: points with values. The points to maintain a certain constant of how many ads get users how much content, and their respective value to keep track of how much money the creators generate, accurate to the microdollar. This effectively means that each individual 'adcoin', if you will, has its own value. Let's say ad space is cheap and an advertiser buys 1m adcoins for 1k dollar, then one coin is worth 0.001 dollar. If ad space is expensive it be 1m for 10k = 0.01 dollar per coin. The users don't care about the value, since the content costs a static amount of coins, regardless of their value. The creators on the other hand, would see a lot more money flowing in if the coins their content accumulates were bought for a higher price. Makes sense right? Kinda?
+
+
+Math and code
+But there's a bit of a challenge, saving each individual coin in some kind of massive array and or transfering a bunch of floating point values from account to account would be a digital disaster. Let's crunch some numbers and do some math magic to see if we can have this array disappear, along with the AWS server cost. Let's say we have wallet 1 and 2, and we want to add them together. No problem, just add the coins to the array.
+
+const w1 = [1, 2, 3]           // length: 3, total:  6, average: 2
+const w2 = [5, 6, 7]           // length: 3, total: 18, average: 6
+const w3 = [1, 2, 3, 5, 6, 7]  // length: 6, total: 24, average: 4
+
+But like I said, I don't like these arrays and I want single numbers. Look at array data and notice that we can also just use the total and the length. Here, this is the same:
+
+const w1 = { coins: 3, value:  6 }
+const w2 = { coins: 3, value: 18 }
+const w3 = { coins: w1.coins + w2.coins, value: w1.value + w2.value }
+
+And if a user only spends a portion of their coins:
+
+const w1 = { c: 100, v: 10 }
+const w2 = { c: 0, v: 0 }
+
+function spendCoins(w1, w2, amount) {
+    const costInValue = w1.v / w1.c * amount 
+    w1.c -= amount
+    w1.v -= costInValue
+    w2.c += amount
+    w2.v += costInValue
+}
+
+spendCoins(w1, w2, 10) // 10 coins send from w1 to w2
+w1 // c: 90, v: 9
+w2 // c: 10, v: 1
+
+
+I was very relieved to find out it's actually this simple, you don't actually have to simulate the journey of each individual coin-value pair as they flow from the advertisers to the creators, and can just make due with the ratios.
+
+
+Wrap-up
+And there you have it, a summary of the adcoin system's general concept. There's a lot more to talk about, like security issues, how users might just click the ad-feed and walk away, or perhaps how advertisers could buy enormous amounts of coins when prices are low and then practically sabotage the platform when prices spike, but all that is kinda out of scope of this document. The focus here was outlining the core principles and mechanics of the system, not all that's wrong with it, nor how I hope to solve it all on FredGames. Alrighty then, well, I hope this clarifies things and has made for an interesting read at least. That's all for now, byebye!
